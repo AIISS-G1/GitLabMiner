@@ -17,7 +17,7 @@ public class GitlabIssue extends Issue {
     }
 
     public Issue toIssue() {
-        return new Issue(this.getId(), this.getRefId(), this.getTitle(), this.getDescription(), this.getState(),
+        return new Issue(this.getId(), this.issueId, this.getTitle(), this.getDescription(), this.getState(),
                 this.getCreatedAt(), this.getUpdatedAt(), this.getClosedAt(), this.getLabels(), this.getAuthor(),
                 this.getAssignee(), this.getUpvotes(), this.getDownvotes(), this.getWebUrl(), this.getComments());
     }
