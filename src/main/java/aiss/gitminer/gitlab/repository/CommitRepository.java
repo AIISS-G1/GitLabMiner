@@ -20,7 +20,7 @@ public class CommitRepository {
 
     @Autowired private AuthenticationRestTemplate restTemplate;
 
-    public List<Commit> get(String id, int page, LocalDate since, String token) {
+    public List<Commit> fetchProjectCommits(String id, int page, LocalDate since, String token) {
         String url = UriComponentsBuilder.fromUriString(BASE_DIR + "/" + id + "/repository/commits")
                 .queryParam("page", page)
                 .queryParamIfPresent("since", Optional.ofNullable(since)

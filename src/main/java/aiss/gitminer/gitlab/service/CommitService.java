@@ -15,9 +15,9 @@ public class CommitService {
 
     @Autowired private CommitRepository commitRepository;
 
-    public List<Commit> get(String id, int maxPages, int since, String token) {
+    public List<Commit> fetchProjectCommits(String id, int maxPages, int since, String token) {
         return RestPaginationHelper.unwrap(
-                page -> this.commitRepository.get(id, page, LocalDate.now().minus(Period.ofDays(since)), token),
+                page -> this.commitRepository.fetchProjectCommits(id, page, LocalDate.now().minus(Period.ofDays(since)), token),
                 maxPages
         );
     }

@@ -13,7 +13,7 @@ public class CommentService {
 
     @Autowired private CommentRepository commentRepository;
 
-    public List<Comment> get(String id, String issueId, int maxPages, String token) {
+    public List<Comment> fetchIssueComments(String id, String issueId, int maxPages, String token) {
         return RestPaginationHelper.unwrap(
                 page -> this.commentRepository.fetchIssueComments(id, issueId, page, token),
                 maxPages

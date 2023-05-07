@@ -12,7 +12,7 @@ public class ProjectRepository {
 
     @Autowired private AuthenticationRestTemplate restTemplate;
 
-    public Project get(String id, String token) {
+    public Project findById(String id, String token) {
         return this.restTemplate.getForObject(BASE_DIR + "/" + id, Project.class, token);
     }
 }

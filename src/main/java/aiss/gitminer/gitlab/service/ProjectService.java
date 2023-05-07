@@ -13,11 +13,11 @@ public class ProjectService {
     @Autowired private CommitService commitService;
     @Autowired private IssueService issueService;
 
-    public Project get(String id, int sinceCommits, int sinceIssues, int maxPages, String token) {
-        Project project = this.projectRepository.get(id, token);
+    public Project findById(String id, int sinceCommits, int sinceIssues, int maxPages, String token) {
+        Project project = this.projectRepository.findById(id, token);
 
-        project.setCommits(this.commitService.get(id, maxPages, sinceCommits, token));
-        project.setIssues(this.issueService.get(id, maxPages, sinceIssues, token));
+        project.setCommits(this.commitService.fetchProjectCommits(id, maxPages, sinceCommits, token));
+        project.setIssues(this.issueService.fetchProjectIssues(id, maxPages, sinceIssues, token));
 
         return project;
     }

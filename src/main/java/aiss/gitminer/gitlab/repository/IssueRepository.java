@@ -20,7 +20,7 @@ public class IssueRepository {
 
     @Autowired private AuthenticationRestTemplate restTemplate;
 
-    public List<GitlabIssue> get(String id, int page, LocalDate since, String token) {
+    public List<GitlabIssue> fetchProjectIssues(String id, int page, LocalDate since, String token) {
         String url = UriComponentsBuilder.fromUriString(BASE_DIR + "/" + id + "/issues")
                 .queryParam("page", page)
                 .queryParamIfPresent("created_after", Optional.ofNullable(since)
