@@ -36,6 +36,8 @@ public class GitLabController {
                           @RequestParam(defaultValue = "2") int sinceCommits,
                           @RequestParam(defaultValue = "20") int sinceIssues,
                           @RequestParam(defaultValue = "2") int maxPages) {
-        return null;
+        Project project = this.get(authorization, id, sinceCommits, sinceIssues, maxPages);
+        this.gitMinerService.uploadProject(project);
+        return project;
     }
 }
