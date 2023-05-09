@@ -1,8 +1,8 @@
 package aiss.gitminer.gitlab;
 
-import aiss.gitminer.gitlab.service.GitMinerService;
 import aiss.gitminer.gitlab.service.ProjectService;
 import aiss.gitminer.model.Project;
+import aiss.gitminer.service.GitMinerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
