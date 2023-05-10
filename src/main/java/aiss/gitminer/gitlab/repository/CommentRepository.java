@@ -2,7 +2,6 @@ package aiss.gitminer.gitlab.repository;
 
 import aiss.gitminer.authentication.AuthenticationRestTemplate;
 import aiss.gitminer.model.Comment;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -15,7 +14,11 @@ import static aiss.gitminer.gitlab.GitLabMinerApplication.BASE_DIR;
 @Repository
 public class CommentRepository {
 
-    @Autowired private AuthenticationRestTemplate restTemplate;
+    private final AuthenticationRestTemplate restTemplate;
+
+    public CommentRepository(AuthenticationRestTemplate restTemplate) {
+        this.restTemplate = restTemplate;
+    }
 
     public List<Comment> fetchIssueComments(String id, String issueId, int page, String token) {
         String url = UriComponentsBuilder.fromUriString(BASE_DIR + "/" + id + "/issues/" + issueId + "/notes")

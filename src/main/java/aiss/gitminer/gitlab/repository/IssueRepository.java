@@ -2,7 +2,6 @@ package aiss.gitminer.gitlab.repository;
 
 import aiss.gitminer.authentication.AuthenticationRestTemplate;
 import aiss.gitminer.gitlab.model.GitlabIssue;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -18,7 +17,11 @@ import static aiss.gitminer.gitlab.GitLabMinerApplication.BASE_DIR;
 @Repository
 public class IssueRepository {
 
-    @Autowired private AuthenticationRestTemplate restTemplate;
+    private final AuthenticationRestTemplate restTemplate;
+
+    public IssueRepository(AuthenticationRestTemplate restTemplate) {
+        this.restTemplate = restTemplate;
+    }
 
     public List<GitlabIssue> fetchProjectIssues(String id, int page, LocalDate since, String token) {
         String url = UriComponentsBuilder.fromUriString(BASE_DIR + "/" + id + "/issues")

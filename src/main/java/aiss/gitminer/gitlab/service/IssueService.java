@@ -4,7 +4,6 @@ import aiss.gitminer.gitlab.model.GitlabIssue;
 import aiss.gitminer.gitlab.repository.IssueRepository;
 import aiss.gitminer.model.Issue;
 import aiss.gitminer.pagination.RestPaginationHelper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -14,8 +13,13 @@ import java.util.List;
 @Service
 public class IssueService {
 
-    @Autowired private IssueRepository issueRepository;
-    @Autowired private CommentService commentService;
+    private final IssueRepository issueRepository;
+    private final CommentService commentService;
+
+    public IssueService(IssueRepository issueRepository, CommentService commentService) {
+        this.issueRepository = issueRepository;
+        this.commentService = commentService;
+    }
 
     public List<Issue> fetchProjectIssues(String id, int maxPages, int since, String token) {
         List<GitlabIssue> issues = RestPaginationHelper.unwrap(
