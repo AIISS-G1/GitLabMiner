@@ -1,5 +1,6 @@
 package aiss.gitminer.gitlab;
 
+import aiss.gitminer.exception.AuthenticationException;
 import aiss.gitminer.gitlab.service.ProjectService;
 import aiss.gitminer.model.Project;
 import aiss.gitminer.service.GitMinerService;
@@ -25,7 +26,8 @@ public class GitLabController {
                        @RequestParam(defaultValue = "2") int maxPages) {
         String token = Optional.ofNullable(authorization)
                 .map(s -> s.replace("Bearer ", ""))
-                .orElse(null);
+                .orElseThrow(() -> new AuthenticationException(HttpStatus.UNAUTHORIZED));
+
         return this.projectService.findById(id, sinceCommits, sinceIssues, maxPages, token);
     }
 
