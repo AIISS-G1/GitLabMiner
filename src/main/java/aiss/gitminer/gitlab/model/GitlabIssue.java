@@ -5,6 +5,7 @@ import aiss.gitminer.model.Issue;
 import aiss.gitminer.model.User;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.time.Instant;
 import java.util.List;
 
 public class GitlabIssue extends Issue {
@@ -16,8 +17,8 @@ public class GitlabIssue extends Issue {
         // Constructor for Jackson
     }
 
-    public GitlabIssue(String id, String issueId, String title, String description, String state, String createdAt,
-                       String updatedAt, String closedAt, List<String> labels, User author, User assignee,
+    public GitlabIssue(String id, String issueId, String title, String description, String state, Instant createdAt,
+                       Instant updatedAt, Instant closedAt, List<String> labels, User author, User assignee,
                        Integer upvotes, Integer downvotes, String webUrl, List<Comment> comments) {
         super(id, null, title, description, state, createdAt, updatedAt, closedAt, labels, author, assignee, upvotes, downvotes, webUrl, comments);
         this.issueId = issueId;
