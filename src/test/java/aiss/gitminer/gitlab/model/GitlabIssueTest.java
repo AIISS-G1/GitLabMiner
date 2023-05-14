@@ -4,6 +4,7 @@ import aiss.gitminer.model.Issue;
 import aiss.gitminer.model.User;
 import org.junit.jupiter.api.Test;
 
+import java.time.Instant;
 import java.util.List;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
@@ -20,7 +21,7 @@ class GitlabIssueTest {
                         \r
                         Change requires alteration of existing interfaces which may be incompatible with some third party plugins.""",
                 "closed",
-                "2023-01-25T11:35:30Z", "2023-01-25T13:06:20Z", "2023-01-25T13:06:19Z",
+                Instant.parse("2023-01-25T11:35:30Z"), Instant.parse("2023-01-25T13:06:20Z"), Instant.parse("2023-01-25T13:06:19Z"),
                 List.of("label"),
                 new User("1891135", "hcoles", "Henry Coles",
                         "https://avatars.githubusercontent.com/u/1891135?v=4",
