@@ -28,7 +28,7 @@ public class IssueService {
         );
 
         return issues.stream()
-                .peek(issue -> issue.setComments(this.commentService.fetchIssueComments(id, issue.getIssueId(), 1, token)))
+                .peek(issue -> issue.setComments(this.commentService.fetchIssueComments(id, issue.getIssueId(), maxPages, token)))
                 .map(GitlabIssue::toIssue)
                 .toList();
     }
